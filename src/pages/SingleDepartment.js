@@ -9,6 +9,7 @@ function SingleDepartment() {
 
   useEffect(() => {
     fetchDepartmentById(id)
+    .then(res => res.json())
       .then(data => {
         setDepartment(data);
         setLoading(false);

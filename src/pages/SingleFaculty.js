@@ -1,16 +1,16 @@
 import { useParams, Link} from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchFacultyById } from "../api";
+import { fetchProfessorById } from "../api";
 
 function SingleFaculty() {
   const { id } = useParams();
-  const [faculty, setFaculty] = useState(null);
+  const [professor, setProfessor] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchFacultyById(id)
+    fetchProfessorById(id)
       .then(data => {
-        setFaculty(data);
+        setProfessor(data);
         setLoading(false);
       })
       .catch(err => {
@@ -20,19 +20,19 @@ function SingleFaculty() {
   }, [id]);
 
   if (loading) return <p>Loading Faculty...</p>;
-  if (!faculty) return <p>Faculty not found.</p>;
+  if (!professor) return <p>Faculty not found.</p>;
 
   return (
     <div>
-      <h1>{faculty.name}</h1>
-      <img src={faculty.profileImage} alt={faculty.name} width="200" />
-      <p>Email: {faculty.email}</p>
-      <p>Bio: {faculty.bio}</p>
-      {faculty.department && (
+      <h1>{professor.name}</h1>
+      <img src={professor.profileImage} alt={professor.name} width="200" />
+      <p>Email: {professor.email}</p>
+      <p>Bio: {professor.bio}</p>
+      {professor.department && (
         <p>
           Department:{" "}
-          <Link to={`/departments/${faculty.department.id}`}>
-            {faculty.department.name}
+          <Link to={`/departments/${professor.department.id}`}>
+            {professor.department.name}
           </Link>
         </p>
       )}

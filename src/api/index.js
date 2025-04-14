@@ -12,13 +12,14 @@ export async function fetchDepartmentById(id) {
   return res.json();
 }
 
-export async function fetchFaculty() {
+
+export async function fetchProfessors() {
   const res = await fetch(`${BASE_URL}/professors`);
   if (!res.ok) throw new Error("Failed to fetch professors");
   return res.json();
 }
 
-export async function fetchFacultyById(id) {
+export async function fetchProfessorById(id) {
   const res = await fetch(`${BASE_URL}/professors/${id}`);
   if (!res.ok) throw new Error("Professor not found");
   return res.json();

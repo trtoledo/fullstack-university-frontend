@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
-import { fetchFaculty } from "../api";
+import { fetchProfessors } from "../api";
 import { Link } from "react-router-dom";
 
 function AllFaculty() {
-  const [faculty, setFaculty] = useState([]);
+  const [professors, setProfessors] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchFaculty()
+    fetchProfessors()
       .then(data => {
-        setFaculty(data);
+        setProfessors(data);
         setLoading(false);
       })
       .catch(err => {
-        console.error("Error fetching faculty:", err);
+        console.error("Error fetching professors:", err);
         setLoading(false);
       });
   }, []);
@@ -24,9 +24,9 @@ function AllFaculty() {
     <div>
       <h1>All Faculty</h1>
       <ul>
-        {faculty.map(prof => (
+        {professors.map(prof => (
           <li key={prof.id}>
-            <Link to={`/faculty/${prof.id}`}>
+            <Link to={`/professors/${prof.id}`}>
               <h2>{prof.name}</h2>
             </Link>
             <p>Email: {prof.email}</p>
